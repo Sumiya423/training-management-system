@@ -11,6 +11,11 @@ const validator = {
             }
             return true;
         })
+    ],
+    editUser: [
+        body('name').isString().withMessage('Name must be string'),
+        body('email').trim().isEmail().withMessage('E-mail is invalid')
+
     ]
 };
 

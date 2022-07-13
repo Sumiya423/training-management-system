@@ -9,4 +9,15 @@ router.post('/create-user', validator.createUser, userController.createUser);
 
 router.delete('/delete-user/:userId', userController.deleteUser);
 
+router.put('/edit-user/:userId',validator.editUser, userController.postEditUser);
+
+router.get('/users', userController.getUsers);
+
+router.get('/users/:userId', userController.getUser);
+
+router.post('/create-course', userController.createCourse);
+router.post('/create-batch', userController.createBatch);
+router.get('/batches', userController.getBatches);
+router.get('/batches/:batchId', userController.getBatch);
+
 module.exports = router;

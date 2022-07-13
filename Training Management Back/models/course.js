@@ -9,11 +9,7 @@ const courseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    startDate:{
-        type: String,
-        required: true
-    },
-    endDate:{
+    topics:{
         type: String,
         required: true
     }

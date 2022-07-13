@@ -1,6 +1,7 @@
 const express = require('express');
 const databaseConnection = require('./config/database');
 const dotenv = require('dotenv');
+const { failure } = require('./utils/commonResponse');
 const HTTP_STATUS = require('./utils/httpStatus');
 const app = express();
 dotenv.config();
