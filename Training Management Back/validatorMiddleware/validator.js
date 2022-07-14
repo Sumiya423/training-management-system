@@ -10,12 +10,12 @@ const validator = {
                 return Promise.reject("E-mail is already exists!");
             }
             return true;
-        })
+        }),
+        body('courses').trim().isString().withMessage('courses are invalid')
     ],
     editUser: [
         body('name').isString().withMessage('Name must be string'),
         body('email').trim().isEmail().withMessage('E-mail is invalid')
-
     ]
 };
 

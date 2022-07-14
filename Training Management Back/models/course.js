@@ -1,18 +1,30 @@
 const mongoose = require('mongoose')
 
 const courseSchema = new mongoose.Schema({
-    title:{
+    title: {
         type: String,
         required: true
     },
-    description:{
+    description: {
         type: String,
         required: true
     },
-    topics:{
-        type: String,
+    topics: [
+        {
+            type: String,
+            required: true
+        },
+    ],
+    startDate: {
+        type: Date,
         required: true
-    }
+    },
+    endDate: {
+        type: Date,
+        required: true
+    },
+    
+
 })
 
 const Course = new mongoose.model('Course', courseSchema);

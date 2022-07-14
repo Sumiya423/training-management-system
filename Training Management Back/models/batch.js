@@ -12,12 +12,12 @@ const batchSchema = new mongoose.Schema({
     },
 
     startDate: {
-        type: String,
+        type: Date,
         required: true
     },
 
     endDate: {
-        type: String,
+        type: Date,
         required: true
     },
 

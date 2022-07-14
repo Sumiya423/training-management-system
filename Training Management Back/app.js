@@ -6,13 +6,15 @@ const HTTP_STATUS = require('./utils/httpStatus');
 const app = express();
 dotenv.config();
 
-const userRouter = require('./routes/user')
+const userRouter = require('./routes/user');
+const authRouter = require('./routes/auth')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //app.use(cors());
 
 app.use('/admin',userRouter);
+app.use(authRouter);
 app.use((req, res, next) => {
     res.status(HTTP_STATUS.NOT_FOUND).send(failure('NOT FOUND'));
 });

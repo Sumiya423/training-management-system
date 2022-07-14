@@ -1,11 +1,15 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
         required: true
     },
-    email:{
+    email: {
+        type: String,
+        required: true
+    },
+    imageUrl: {
         type: String,
         required: true
     },
@@ -21,6 +25,13 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    courses: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'Course'
+        }
+    ],
     isVerified: {
         type: Boolean,
         default: false
