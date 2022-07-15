@@ -53,12 +53,6 @@ class userController {
 
             };
 
-            const jwtToken = jwt.sign(userData, process.env.JWT_SECRET_KEY, { expiresIn: '12h' });
-            const resData = {
-                access_token: jwtToken,
-                ...userData
-            }
-
             const changePassToken = crypto.randomBytes(32).toString('hex');
             user.changePasswordToken = changePassToken;
             await user.save();
@@ -83,7 +77,7 @@ class userController {
             });
 
 
-            return res.status(HTTP_STATUS.OK).send(success('User is created successfully!', resData));
+            return res.status(HTTP_STATUS.OK).send(success('User is created successfully!', userData));
         }
         catch (error) {
             console.log(error);

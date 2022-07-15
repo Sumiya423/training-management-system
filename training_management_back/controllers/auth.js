@@ -38,8 +38,15 @@ class authController {
                 isAdmin: user.isAdmin,
                 isTrainer: user.isTrainer,
             };
+
+            const jwtToken = jwt.sign(userData, process.env.JWT_SECRET_KEY, { expiresIn: '12h' });
+            const resData = {
+                access_token: jwtToken,
+                ...userData
+            }
+
             
-            return res.status(HTTP_STATUS.OK).send(success('Signed in successfully!', userData));
+            return res.status(HTTP_STATUS.OK).send(success('Signed in successfully!', resData));
 
         } catch (error) {
             console.log(error);

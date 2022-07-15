@@ -2,8 +2,8 @@ const express = require('express');
 const userController = require('../controllers/user');
 const batchController = require('../controllers/batch');
 const courseController = require('../controllers/course')
-const validator = require('../validatorMiddleware/validator')
-const isAdmin = require('../validatorMiddleware/auth');
+const validator = require('../validatorMiddleware/validator');
+const {checkAuth, isAdmin, isTrainer} = require('../validatorMiddleware/auth');
 const user = require('../controllers/user');
 const router = express.Router();
 const multer = require('multer');
@@ -60,7 +60,7 @@ router.get('/users', userController.getUsers);
 router.get('/users/:userId', userController.getUser);
 
 
-router.post('/create-course', courseController.createCourse);
+router.post('/create-course', checkAuth, isAdmin, courseController.createCourse);
 router.get('/courses', courseController.getCourses);
 router.get('/courses/:courseId', courseController.getCourse);
 router.put('/edit-course/:courseId', courseController.editCourse);
