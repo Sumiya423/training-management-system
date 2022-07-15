@@ -4,14 +4,14 @@ const jwt = require('jsonwebtoken');
 const HTTP_STATUS = require('../utils/httpStatus');
 const { success, failure } = require('../utils/commonResponse');
 const { validationResult } = require('express-validator');
-// const sendmail = require('../config/mail');
+const sendmail = require('../config/mail');
 const path = require('path');
 const crypto = require('crypto');
 const ejs = require('ejs');
 const { promisify } = require('util');
 const ejsRenderFile = promisify(ejs.renderFile);
 
-class authController{
+class authController {
 
     async signin(req, res, next) {
         try {
@@ -19,8 +19,9 @@ class authController{
             if (!errors.isEmpty()) {
                 return res.status(HTTP_STATUS.UNPROCESSABLE_ENTITY).send(failure('Invalid Inputs', errors.array()));
             }
-            
-            const user = await User.findOne({ email: req.body.email });
+            const email = req.body.email;
+            const user = await User.findOne({ email: email });
+            console.log(user)
             if (!user) {
                 return res.status(HTTP_STATUS.UNAUTHORIZED).send(failure('Unauthorized user login.'));
             }
@@ -37,17 +38,20 @@ class authController{
                 isAdmin: user.isAdmin,
                 isTrainer: user.isTrainer,
             };
-            const jwtToken = jwt.sign(userData, process.env.JWT_SECRET_KEY, { expiresIn: '12h' });
-            const resData = {
-                access_token: jwtToken,
-                ...userData
-            }
-
-            return res.status(HTTP_STATUS.OK).send(success('Signed in successfully!', resData));
+            
+            return res.status(HTTP_STATUS.OK).send(success('Signed in successfully!', userData));
 
         } catch (error) {
             console.log(error);
             next(error);
+        }
+    }
+
+    async sendChangePasswordMail(req, res, next) {
+        try {
+            const errors = validationResult(req);
+        } catch (error) {
+
         }
     }
 

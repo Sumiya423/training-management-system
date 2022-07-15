@@ -5,13 +5,19 @@ const { success, failure } = require('../utils/commonResponse');
 const { validationResult } = require('express-validator');
 const fs = require('fs/promises');
 const path = require('path');
+const sendmail = require('../config/mail');
+const crypto = require('crypto');
+const ejs = require('ejs');
+const { promisify } = require('util');
+const ejsRenderFile = promisify(ejs.renderFile);
+const jwt = require('jsonwebtoken');
 
 
 let defaultPass = "123456";
 
 class userController {
     async createUser(req, res, next) {
-        
+
         try {
             const errors = validationResult(req);
 
@@ -47,7 +53,37 @@ class userController {
 
             };
 
-            return res.status(HTTP_STATUS.OK).send(success('User is created successfully!', userData));
+            const jwtToken = jwt.sign(userData, process.env.JWT_SECRET_KEY, { expiresIn: '12h' });
+            const resData = {
+                access_token: jwtToken,
+                ...userData
+            }
+
+            const changePassToken = crypto.randomBytes(32).toString('hex');
+            user.changePasswordToken = changePassToken;
+            await user.save();
+
+            const changePassUrl = path.join(
+                process.env.FRONTEND_URI,
+                'change-password',
+                changePassToken,
+                user._id.toString()
+            );
+
+            const htmlStr = await ejsRenderFile(
+                path.join(__dirname, "..", 'mails_ejs', 'changePass.ejs'),
+                { name: user.name, email: user.email, changePassUrl: changePassUrl }
+            )
+
+            sendmail({
+                from: "BJIT Training Center <training@bjitgroup.com>",
+                to: email,
+                subject: "Set Your Password",
+                html: htmlStr
+            });
+
+
+            return res.status(HTTP_STATUS.OK).send(success('User is created successfully!', resData));
         }
         catch (error) {
             console.log(error);
@@ -55,6 +91,33 @@ class userController {
         }
     }
 
+    async setPassword(req, res, next) {
+        try{
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res
+                    .status(HTTP_STATUS.UNPROCESSABLE_ENTITY)
+                    .send(failure('Invalid Inputs', errors.array()));
+            }
+            const token = req.params.token;
+            const userId = req.params.userId;
+            const password = req.body.password;
+
+            const user = await User.findOne({ _id: userId})
+            if (!user || user.changePasswordToken !== token) {
+                return res.status(HTTP_STATUS.FORBIDDEN).send(failure('Invalid Token!'));
+            }
+
+            user.password = await bcrypt.hash(password, 10);
+            user.changePasswordToken = undefined;
+            user.isVerified = true
+            await user.save();
+
+            return res.status(HTTP_STATUS.OK).send(success('Reset password is successfull!', user));
+        }catch(errors){
+
+        }
+    }
     async getUsers(req, res, next) {
         try {
             const users = await User.find()

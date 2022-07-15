@@ -36,6 +36,9 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+
+    changePasswordToken: String,
+    changePasswordExpire: Date
 });
 
 const User = new mongoose.model('User', userSchema);
