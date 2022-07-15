@@ -1,6 +1,7 @@
 const express = require('express');
 const databaseConnection = require('./config/database');
 const dotenv = require('dotenv');
+var cors = require('cors')
 const { failure } = require('./utils/commonResponse');
 const HTTP_STATUS = require('./utils/httpStatus');
 const app = express();
@@ -11,7 +12,7 @@ const authRouter = require('./routes/auth')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//app.use(cors());
+app.use(cors());
 
 app.use('/admin',userRouter);
 app.use(authRouter);
