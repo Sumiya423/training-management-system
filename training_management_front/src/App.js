@@ -6,6 +6,7 @@ import StartPage from "./component/startPage/startPage";
 import WrongUrl from "./component/wrongUrl/wrongUrl";
 import CourseList from "./component/course/courseList";
 import CourseDetails from "./component/course/courseDetails";
+import Profile from "./component/profile/profile";
 
 function App() {
   
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/*" element={<WrongUrl />} />
           <Route exact path="/" element={<StartPage />} />
+          <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/admin/courses" element={<CourseList/>} />
           <Route exact path="/admin/courses/:courseId" element={<CourseDetails/>} />
           {/* <Route exact path="/login" element={<SignInPage setUser={setUser} />} />

@@ -39,7 +39,7 @@ export default function StartPage() {
                         isVerified: data.results.isVerified
                     }
                     setToken(user)
-                    navigate(`/home/`)
+                    navigate(`/profile/`)
                     window.location.reload(false);
                 } else {
                     setErrorMail(data.message)
