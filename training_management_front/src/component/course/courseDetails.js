@@ -34,7 +34,9 @@ function CourseDetails() {
         <div>
             <h3>Title: {course.title}</h3>
             <p>Desc: {course.description}</p>
+            Topics:
             <ol>
+                
                 { topicList }
                 
             </ol>

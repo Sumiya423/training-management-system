@@ -6,6 +6,8 @@ import StartPage from "./component/startPage/startPage";
 import WrongUrl from "./component/wrongUrl/wrongUrl";
 import CourseList from "./component/course/courseList";
 import CourseDetails from "./component/course/courseDetails";
+import BatchList from "./component/batch/batchList";
+import BatchDetails from "./component/batch/batchDetails";
 import Profile from "./component/profile/profile";
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/admin/courses" element={<CourseList/>} />
           <Route exact path="/admin/courses/:courseId" element={<CourseDetails/>} />
+          <Route exact path="/admin/batches" element={<BatchList/>} />
+          <Route exact path="/admin/batches/:batchId" element={<BatchDetails/>} />
           {/* <Route exact path="/login" element={<SignInPage setUser={setUser} />} />
           <Route exact path="/signup" element={<SignUpPage />} />
           <Route path="/forget-password" element={ <ForgetPasswordPage/> } />

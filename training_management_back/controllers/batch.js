@@ -46,7 +46,7 @@ class batchController {
     async getBatch(req, res, next) {
         try {
             const batchId = req.params.batchId;
-            const batch = await Batch.findOne({ batchId }).populate('trainees', 'name email _id').populate('courses').exec();
+            const batch = await Batch.findOne({ batchId }).populate('trainees', 'name email _id imageUrl').populate('courses').exec();
             return res
                 .status(HTTP_STATUS.OK)
                 .send(
