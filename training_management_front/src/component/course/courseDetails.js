@@ -1,14 +1,15 @@
 import React from 'react';
 import {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom";
+import { AuthContext } from '../../App';
 
 
 function CourseDetails() {
 
-    const [course, setCourse] = useState([])
-    
     const { courseId } = useParams();
 
+    const [course, setCourse] = useState([])
+    const {state: authState} = React.useContext(AuthContext)
 
     useEffect( () => {
 
@@ -25,10 +26,12 @@ function CourseDetails() {
             }
         };
         fetchData()
-    }, [])
+    }, [courseId])
 
 
     const topicList = course.topics?.map((topic, i) => <li key={i}>{topic}</li>)
+
+    console.log(authState)
 
     return (
         <div>

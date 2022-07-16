@@ -2,11 +2,13 @@ import React from 'react';
 import {useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
 import Card from '../card/card';
+import { AuthContext } from '../../App';
 
 
 function CourseList() {
 
     const [courses, setCourses] = useState([])
+    const {state: authState} = React.useContext(AuthContext)
 
     let navigate = useNavigate();
 
@@ -33,6 +35,7 @@ function CourseList() {
     }
 
     const courseList = courses?.map(course => <Card key={course._id} component={course} onClick={handleClick}/>)
+    console.log(authState)
 
     return (
         <div>

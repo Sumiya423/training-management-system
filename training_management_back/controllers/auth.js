@@ -42,7 +42,7 @@ class authController {
             const jwtToken = jwt.sign(userData, process.env.JWT_SECRET_KEY, { expiresIn: '12h' });
             const resData = {
                 access_token: jwtToken,
-                ...userData
+                user: userData
             }
 
             
