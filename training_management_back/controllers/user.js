@@ -38,7 +38,12 @@ class userController {
             const password = req.body.password ? await bcrypt.hash(req.body.password, 10) : await bcrypt.hash(defaultPass, 10);
             const isAdmin = req.body.isAdmin;
             const isTrainer = req.body.isTrainer;
-            const courses = req.body.courses;
+            let courses = req.body.courses;
+            if (courses){
+                courses =  Array.isArray(courses)?courses: courses.split(",");
+            } else {
+                courses = []
+            }
             const user = new User({ name, email, imageUrl, password, isAdmin, isTrainer, courses });
             await user.save();
 
