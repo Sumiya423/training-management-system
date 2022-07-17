@@ -10,6 +10,7 @@ import BatchList from "./component/batch/batchList";
 import BatchDetails from "./component/batch/batchDetails";
 import Profile from "./component/profile/profile";
 import Login from './component/auth/login';
+import SetNewPassword from './component/auth/setNewPassword'
 import Header from './share/header/header'
 import CreateTrainer from './component/auth/createTrainer';
 
@@ -61,6 +62,7 @@ function App() {
           <Route exact path="/" element={<StartPage />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/signin" element={<Login/>} />
+          <Route exact path="/change-password/:token/:user_id" element={<SetNewPassword/>} />
           <Route exact path="/admin/courses" element={<CourseList/>} />
           <Route exact path="/admin/trainer/create" element={<CreateTrainer/>} />
           <Route exact path="/admin/courses/:courseId" element={<CourseDetails/>} />
