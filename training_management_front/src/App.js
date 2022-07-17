@@ -11,6 +11,8 @@ import BatchDetails from "./component/batch/batchDetails";
 import Profile from "./component/profile/profile";
 import Login from './component/auth/login';
 import Header from './share/header/header'
+import CreateTrainer from './component/auth/createTrainer';
+
 
 export const AuthContext = React.createContext();
 
@@ -60,6 +62,7 @@ function App() {
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/signin" element={<Login/>} />
           <Route exact path="/admin/courses" element={<CourseList/>} />
+          <Route exact path="/admin/trainer/create" element={<CreateTrainer/>} />
           <Route exact path="/admin/courses/:courseId" element={<CourseDetails/>} />
           <Route exact path="/admin/batches" element={<BatchList/>} />
           <Route exact path="/admin/batches/:batchId" element={<BatchDetails/>} />
