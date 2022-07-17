@@ -9,14 +9,14 @@ export const Login = () => {
 
   let navigate = useNavigate();
 
-  const initialState = {
+  const dataState = {
     email: "",
     password: "",
     isSubmitting: false,
     errorMessage: null
   };
 
-  const [data, setData] = React.useState(initialState);
+  const [data, setData] = React.useState(dataState);
 
   const handleInputChange = event => {
     setData({

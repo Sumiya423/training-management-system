@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
-import Card from '../card/card';
+import CourseCard from './courseCard';
 import { AuthContext } from '../../App';
 
 
@@ -34,7 +34,7 @@ function CourseList() {
         navigate(`/admin/courses/${course_id}`);
     }
 
-    const courseList = courses?.map(course => <Card key={course._id} component={course} onClick={handleClick}/>)
+    const courseList = courses?.map(course => <CourseCard key={course._id} course={course} onClick={handleClick}/>)
     console.log(authState)
 
     return (

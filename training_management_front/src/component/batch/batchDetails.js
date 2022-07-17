@@ -1,8 +1,8 @@
 import React from 'react';
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
-import Card from '../card/card';
-import UserCard from '../card/userCard';
+// import Card from '../user/card';
+import UserCard from '../user/userCard';
 import { useNavigate } from "react-router-dom";
 
 
@@ -15,7 +15,7 @@ function BatchDetails() {
 
     let navigate = useNavigate();
 
-    useEffect( () => {
+    useEffect(() => {
 
         const url = `http://localhost:4000/admin/batches/${batchId}`;
 
@@ -40,27 +40,24 @@ function BatchDetails() {
     }
 
     const handleTraineesClick = (event, batch_id) => {
-        
+
     }
-    const courseList = courses?.map(course => <Card key={course._id} component={course} onClick={handleCourseClick}/>)
-    const traineesList = trainees?.map(trainees => <UserCard key={trainees._id} component={trainees} onClick={handleTraineesClick}/>)
+    const courseList = courses;
+    const traineesList = trainees?.map(trainees => <UserCard key={trainees._id} component={trainees} onClick={handleTraineesClick} />)
     return (
         <div>
             <h3>Title: {batch.title}</h3>
             <p>Desc: {batch.description}</p>
             Trainees:
             <ol>
-            { traineesList }
-                
+                {traineesList}
             </ol>
             Courses:
             <ol>
-                
-                { courseList }
-                
+                { }
             </ol>
             <p>Start-date: {batch.startDate}</p>
-            
+
             <p>End-date: {batch.endDate}</p>
         </div>
     )

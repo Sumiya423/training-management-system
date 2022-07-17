@@ -1,13 +1,14 @@
 import React from 'react';
 import {useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
-import Card from '../card/card';
-
+import BatchCard from './batchCard';
+import { AuthContext } from '../../App';
 
 function BatchList() {
 
     const [batches, setBatches] = useState([])
-
+    const {state: authState} = React.useContext(AuthContext)
+    
     let navigate = useNavigate();
 
 
@@ -32,7 +33,7 @@ function BatchList() {
         navigate(`/admin/batches/${batch_id}`);
     }
 
-    const batchList = batches?.map(batch => <Card key={batch._id} component={batch} onClick={handleClick}/>)
+    const batchList = batches?.map(batch => <BatchCard key={batch._id} batch={batch} onClick={handleClick}/>)
 
     return (
         <div>
