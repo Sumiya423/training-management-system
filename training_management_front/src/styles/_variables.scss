@@ -1,0 +1,15 @@
+$fontDM: "DM Sans", sans-serif;
+$fontUbuntu: "Ubuntu";
+$fontsizeSmall: 14px;
+$fontSizeBodySmall: 16px;
+$fontSizeBodyMedium: 20px;
+$fontSizeHeaderSmall: 24px;
+$fontSizeHeaderBig: 36px;
+$generalColor: rgb(106, 204, 224);
+
+@mixin flexCenter($direction, $jusCon, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $jusCon;
+    align-items: $align;
+}

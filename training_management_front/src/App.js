@@ -1,3 +1,4 @@
+import './styles/style.css';
 import './App.css';
 import React from "react";
 import { Routes, Route } from "react-router-dom";
@@ -12,6 +13,7 @@ import Profile from "./component/profile/profile";
 import Login from './component/auth/login';
 import Header from './share/header/header'
 import CreateTrainer from './component/auth/createTrainer';
+import CreateTrainee from './component/auth/createTrainee';
 
 
 export const AuthContext = React.createContext();
@@ -58,11 +60,12 @@ function App() {
         <Header/>
         <Routes>
           <Route path="/*" element={<WrongUrl />} />
-          <Route exact path="/" element={<StartPage />} />
+          <Route exact path="/" element={<Profile />}/>
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/signin" element={<Login/>} />
           <Route exact path="/admin/courses" element={<CourseList/>} />
           <Route exact path="/admin/trainer/create" element={<CreateTrainer/>} />
+          <Route exact path="/admin/trainee/create" element={<CreateTrainee/>} />
           <Route exact path="/admin/courses/:courseId" element={<CourseDetails/>} />
           <Route exact path="/admin/batches" element={<BatchList/>} />
           <Route exact path="/admin/batches/:batchId" element={<BatchDetails/>} />

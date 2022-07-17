@@ -17,9 +17,15 @@ export default function Header() {
     return (
         <div className="header">
             <div className="header__menu">
+                <img className="header__menu__logo" src="./logo.png"/>
                 <Link to="/profile">Profile</Link>
+                <Link to="/trainer">Trainer</Link>
+                <Link to="/trainee">Trainee</Link>
+                <Link to="/courses">Courses</Link>
+                <Link to="/batches">Batches</Link>
+                <Link to="/trainee">Quizes</Link>
                 {state.isAuthenticated && <button onClick={signout}>Logout</button>}
-            </div>
+           </div>
         </div>
     )
 }

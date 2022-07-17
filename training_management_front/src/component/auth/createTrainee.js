@@ -1,9 +1,7 @@
 import React from "react";
 import { AuthContext } from "../../App";
-import Select from 'react-select';
 
-
-export const CreateTrainer = () => {
+export const CreateTrainee = () => {
 
   const initialData = {
     isSubmitting: false,
@@ -12,32 +10,7 @@ export const CreateTrainer = () => {
 
   const [data, setData] = React.useState(initialData);
   const [selectedFile, setSelectedFile] = React.useState();
-
-
-  const [courses, setCourses] = React.useState([])
   const { state: authState } = React.useContext(AuthContext)
-
-  React.useEffect(() => {
-    const url = `http://localhost:4000/admin/courses`;
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url, {
-          method: "GET",
-          headers: {
-            'authorization': 'Bearer ' + authState.token,
-          },
-        });
-        const json = await response.json();
-        let courseOptions = []
-        json.results.map(course => courseOptions.push({ value: course._id, label: course.title }))
-        setCourses(courseOptions);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-    fetchData()
-  }, [])
 
   const handleInputChange = event => {
     setData({
@@ -45,12 +18,7 @@ export const CreateTrainer = () => {
       [event.target.name]: event.target.value
     });
   };
-  const handleMultiSelect = selected => {
-    setData({
-      ...data,
-      ['courses']: selected
-    });
-  }
+  
   const handleSubmit = event => {
     event.preventDefault();
     setData({
@@ -58,13 +26,11 @@ export const CreateTrainer = () => {
       isSubmitting: true,
       errorMessage: null
     });
-    const course_ids = data.courses?.map(course => course.value)
+
     let formData = new FormData();
     formData.append("name", data.name);
     formData.append("email", data.email);
     formData.append("imageUrl", selectedFile);
-    formData.append("isTrainer", true);
-    formData.append("courses", course_ids)
 
     const url = "http://localhost:4000/admin/create-user"
     fetch(url, {
@@ -119,14 +85,6 @@ export const CreateTrainer = () => {
             onChange={(e) => setSelectedFile(e.target.files[0])}
           />
         </div>
-        <div>
-          <Select
-            closeMenuOnSelect={false}
-            isMulti
-            options={courses}
-            onChange={handleMultiSelect}
-          />
-        </div>
         {data.errorMessage && <span>{data.errorMessage}</span>}
         <button disabled={data.isSubmitting}>
           {data.isSubmitting ? "Creating....." : "Create"}
@@ -135,4 +93,4 @@ export const CreateTrainer = () => {
     </div>
   );
 };
-export default CreateTrainer;
+export default CreateTrainee;

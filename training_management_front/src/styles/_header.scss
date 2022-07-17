@@ -1,0 +1,37 @@
+@import './variables';
+
+.header {
+    &__menu {
+        @include flexCenter(row, space-evenly, center);
+        flex-shrink: 0;
+        margin: 0;
+        background-color: rgba(18, 34, 84, 0.934);
+        height: 80px;
+        padding: 0px 100px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        &:first-child{
+            
+        }
+        &__logo{
+            height: 60px;
+        }
+        & a {
+            font-size: 15px;
+            color: rgb(213, 238, 238);
+            justify-content: center;
+            text-decoration: none;
+        }
+        & a:hover, a:focus{
+            color: rgb(139, 204, 215);;
+            font-weight: bold;
+        }
+
+        & button{
+            width: 100px;
+            height: 35px;
+            background-color: $generalColor;
+            border: 0;
+            border-radius: 3px;
+        }
+    }
+}
