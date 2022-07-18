@@ -47,9 +47,8 @@ function App() {
   return (
     <AuthContext.Provider value={{state, dispatch}}>
       <div>
-        <Header/>
+        {state.user && <Header/>}
         <Layout/>
-        {/* {user && <Layouts setUser={setUser}/>} */}
       </div>
     </AuthContext.Provider>
   )
