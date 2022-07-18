@@ -9,7 +9,7 @@ import CreateTrainer from '../../component/auth/createTrainer';
 import CreateTrainee from '../../component/auth/createTrainee';
 import Trainee from '../../component/auth/traineeList';
 import Trainer from '../../component/auth/trainerList';
-
+import EditProfile from "../../component/auth/editProfile";
 import CourseDetails from "../../component/course/courseDetails";
 import BatchList from "../../component/batch/batchList";
 import BatchDetails from "../../component/batch/batchDetails";
@@ -31,6 +31,7 @@ function Layout() {
                         <Route exact path="/admin/trainer/create" element={<CreateTrainer />} />
                         <Route exact path="/admin/trainee/create" element={<CreateTrainee />} />
                         <Route exact path="/profile" element={<Profile />} />
+                        <Route exact path="/profile/edit" element={<EditProfile />} />
                         <Route exact path="/signin" element={<Login />} />
                         <Route exact path="/admin/trainee" element={<Trainee />} />
                         <Route exact path="/admin/trainer" element={<Trainer />} />

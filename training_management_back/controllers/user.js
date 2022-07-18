@@ -167,7 +167,13 @@ class userController {
                 updatedUser.email = req.body.email ? req.body.email : updatedUser.email;
                 updatedUser.isAdmin = req.body.isAdmin ? req.body.isAdmin : updatedUser.isAdmin;
                 updatedUser.isTrainer = req.body.isTrainer ? req.body.isTrainer : updatedUser.isTrainer;
-                updatedUser.courses = req.body.courses ? req.body.courses : updatedUser.courses;
+                let courseBody = req.body.courses;
+                if (courseBody){
+                    courseBody =  Array.isArray(courseBody)?courseBody: courseBody.split(",");
+                } else {
+                    courseBody = []
+                }
+                updatedUser.courses = req.body.courses ? courseBody : updatedUser.courses;
 
                 if (req.file) {
                     await fs.unlink(path.join(__dirname, '..', updatedUser.imageUrl));

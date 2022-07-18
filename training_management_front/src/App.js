@@ -4,6 +4,9 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Header from './share/header/header'
+import EditProfile from './component/auth/editProfile';
+import CreateTrainer from './component/auth/createTrainer';
+import CreateTrainee from './component/auth/createTrainee';
 
 import Layout from './share/layouts/layouts';
 
@@ -46,6 +49,7 @@ function App() {
       <div>
         <Header/>
         <Layout/>
+        {/* {user && <Layouts setUser={setUser}/>} */}
       </div>
     </AuthContext.Provider>
   )
