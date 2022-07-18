@@ -13,6 +13,7 @@ import Profile from "./component/profile/profile";
 import Login from './component/auth/login';
 import SetNewPassword from './component/auth/setNewPassword'
 import Header from './share/header/header'
+import EditProfile from './component/auth/editProfile';
 import CreateTrainer from './component/auth/createTrainer';
 import CreateTrainee from './component/auth/createTrainee';
 
@@ -68,6 +69,7 @@ function App() {
           <Route exact path="/admin/courses" element={<CourseList/>} />
           <Route exact path="/admin/trainer/create" element={<CreateTrainer/>} />
           <Route exact path="/admin/trainee/create" element={<CreateTrainee/>} />
+          <Route exact path="/profile/edit" element={<EditProfile/>} />
           <Route exact path="/admin/courses/:courseId" element={<CourseDetails/>} />
           <Route exact path="/admin/batches" element={<BatchList/>} />
           <Route exact path="/admin/batches/:batchId" element={<BatchDetails/>} />
