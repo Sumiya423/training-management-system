@@ -6,8 +6,8 @@ import { AuthContext } from '../../App';
 export default function Header() {
 
     let navigate = useNavigate();
-    const {state, dispatch} = React.useContext(AuthContext)
-
+    const { state, dispatch } = React.useContext(AuthContext)
+    console.log('state', state);
     const signout = () => {
         dispatch({
             type: "LOGOUT",
@@ -17,15 +17,18 @@ export default function Header() {
     return (
         <div className="header">
             <div className="header__menu">
-                <img className="header__menu__logo" src="./logo.png"/>
+                <img className="header__menu__logo" src="logo.png" />
                 <Link to="/profile">Profile</Link>
-                <Link to="/trainer">Trainer</Link>
-                <Link to="/trainee">Trainee</Link>
+                {state.user.isAdmin && <Link to="/admin/trainer">Trainer</Link>}
+                {state.user.isAdmin && <Link to="/admin/trainee">Trainee</Link>}
+                {state.user.isAdmin && <Link to="/admin/courses">Courses</Link>}
+                {state.user.isTrainer && <Link to="/courses">My Courses</Link>}
                 <Link to="/courses">Courses</Link>
-                <Link to="/batches">Batches</Link>
-                <Link to="/trainee">Quizes</Link>
+                <Link to="/admin/batches">Batches</Link>
+                {state.user.isTrainer && <Link to="/quizes">Quizes</Link>}
+                <Link to='/quizes'>My Quizes</Link>
                 {state.isAuthenticated && <button onClick={signout}>Logout</button>}
-           </div>
+            </div>
         </div>
     )
 }

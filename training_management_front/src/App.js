@@ -3,19 +3,9 @@ import './App.css';
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import StartPage from "./component/startPage/startPage";
-import WrongUrl from "./component/wrongUrl/wrongUrl";
-import CourseList from "./component/course/courseList";
-import CourseDetails from "./component/course/courseDetails";
-import BatchList from "./component/batch/batchList";
-import BatchDetails from "./component/batch/batchDetails";
-import Profile from "./component/profile/profile";
-import Login from './component/auth/login';
-import SetNewPassword from './component/auth/setNewPassword'
 import Header from './share/header/header'
-import CreateTrainer from './component/auth/createTrainer';
-import CreateTrainee from './component/auth/createTrainee';
 
+import Layout from './share/layouts/layouts';
 
 export const AuthContext = React.createContext();
 
@@ -24,7 +14,6 @@ const initialState = {
   user: JSON.parse(localStorage.getItem("user")),
   token: JSON.parse(localStorage.getItem("token")),
 };
-
 
 const  reducer = (state, action) => {
   switch (action.type) {
@@ -50,34 +39,13 @@ const  reducer = (state, action) => {
   }
 };
 
-
-
 function App() {
-
   const [state, dispatch] = React.useReducer(reducer, initialState);
   return (
     <AuthContext.Provider value={{state, dispatch}}>
       <div>
         <Header/>
-        <Routes>
-          <Route path="/*" element={<WrongUrl />} />
-          <Route exact path="/" element={<Profile />}/>
-          <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/signin" element={<Login/>} />
-          <Route exact path="/change-password/:token/:user_id" element={<SetNewPassword/>} />
-          <Route exact path="/admin/courses" element={<CourseList/>} />
-          <Route exact path="/admin/trainer/create" element={<CreateTrainer/>} />
-          <Route exact path="/admin/trainee/create" element={<CreateTrainee/>} />
-          <Route exact path="/admin/courses/:courseId" element={<CourseDetails/>} />
-          <Route exact path="/admin/batches" element={<BatchList/>} />
-          <Route exact path="/admin/batches/:batchId" element={<BatchDetails/>} />
-          {/* <Route exact path="/login" element={<SignInPage setUser={setUser} />} />
-          <Route exact path="/signup" element={<SignUpPage />} />
-          <Route path="/forget-password" element={ <ForgetPasswordPage/> } />
-          <Route path="/reset-password/:token/:id" element={ <ResetPasswordPage/> } /> */}
-        </Routes>
-      
-        {/* {user && <Layouts setUser={setUser}/>} */}
+        <Layout/>
       </div>
     </AuthContext.Provider>
   )

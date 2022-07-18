@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import CourseCard from './courseCard';
 import { AuthContext } from '../../App';
@@ -8,17 +8,23 @@ import { AuthContext } from '../../App';
 function CourseList() {
 
     const [courses, setCourses] = useState([])
-    const {state: authState} = React.useContext(AuthContext)
+    const { state: authState } = React.useContext(AuthContext)
 
     let navigate = useNavigate();
 
 
-    useEffect( () => {
+    useEffect(() => {
         const url = `http://localhost:4000/admin/courses`;
 
         const fetchData = async () => {
             try {
-                const response = await fetch(url);
+                const response = await fetch(url,
+                    {
+                        method: "GET",
+                        headers: {
+                            'authorization': 'Bearer ' + authState.token,
+                        },
+                    });
                 const json = await response.json();
                 console.log(json);
                 setCourses(json.results);
@@ -34,7 +40,7 @@ function CourseList() {
         navigate(`/admin/courses/${course_id}`);
     }
 
-    const courseList = courses?.map(course => <CourseCard key={course._id} course={course} onClick={handleClick}/>)
+    const courseList = courses?.map(course => <CourseCard key={course._id} course={course} onClick={handleClick} />)
     console.log(authState)
 
     return (

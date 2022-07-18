@@ -1,7 +1,10 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../../App';
+
 
 function BatchCard({ batch, onClick }) {
+    const { state: authState } = React.useContext(AuthContext)
 
     let navigate = useNavigate();
     const editBatch = (e) => {
@@ -14,7 +17,11 @@ function BatchCard({ batch, onClick }) {
         const selected_course_id = clicked_div.id;
         console.log(selected_course_id)
         fetch(`http://localhost:4000/admin/delete-batch/${selected_course_id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'authorization': 'Bearer ' + authState.token,
+            },
+
         })
             .then((res) => {
                 console.log(res);

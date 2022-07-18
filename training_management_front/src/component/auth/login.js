@@ -53,7 +53,11 @@ export const Login = () => {
           type: "LOGIN",
           payload: resJson.results
         })
-        navigate('/admin/courses')
+        if(resJson.results.user.isAdmin){
+          navigate('/admin/courses')
+        }
+        navigate('/courses')
+        
       })
       .catch(error => {
         setData({

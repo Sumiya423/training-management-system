@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
-// import Card from '../user/card';
+import { AuthContext } from '../../App';
 import UserCard from '../user/userCard';
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +13,7 @@ function BatchDetails() {
     const [trainees, setTrainees] = useState([])
     const { batchId } = useParams();
 
+    const {state: authState} = React.useContext(AuthContext)
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -21,7 +22,13 @@ function BatchDetails() {
 
         const fetchData = async () => {
             try {
-                const response = await fetch(url);
+                const response = await fetch(url,
+                    {
+                        method: "GET",
+                        headers: {
+                            'authorization': 'Bearer ' + authState.token,
+                        },
+                    });
                 const json = await response.json();
                 console.log(json);
                 setBatch(json.results);

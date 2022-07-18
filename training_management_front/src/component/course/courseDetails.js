@@ -17,7 +17,13 @@ function CourseDetails() {
 
         const fetchData = async () => {
             try {
-                const response = await fetch(url);
+                const response = await fetch(url,
+                    {
+                        method: "GET",
+                        headers: {
+                            'authorization': 'Bearer ' + authState.token,
+                        },
+                    });
                 const json = await response.json();
                 console.log(json);
                 setCourse(json.results);

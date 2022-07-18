@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from '../../App';
 
 function CourseCard({ course, onClick }) {
-
+    const { state: authState } = React.useContext(AuthContext)
     let navigate = useNavigate();
     const editCourse = (e) => {
         const clicked_div = e.currentTarget;
@@ -15,7 +15,10 @@ function CourseCard({ course, onClick }) {
         const selected_course_id = clicked_div.id;
         console.log(selected_course_id)
         fetch(`http://localhost:4000/admin/delete-course/${selected_course_id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'authorization': 'Bearer ' + authState.token,
+            },
         })
             .then((res) => {
                 console.log(res);
@@ -27,7 +30,7 @@ function CourseCard({ course, onClick }) {
             });
     }
     return (
-        <div>
+        <div className='course__list__card'>
             <div style={{ backgroundColor: 'lightBlue', display: 'flex', flexDirection: 'column', margin: '50px' }} onClick={event => onClick(event, course._id)}>
                 <p>Title: {course.title}</p>
                 <span>Desc: {course.description}</span>
