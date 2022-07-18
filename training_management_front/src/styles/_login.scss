@@ -1,9 +1,11 @@
 @import './variables';
-.loginpage{
+
+.loginpage {
     height: 100vh;
     width: 100vw;
     @include flexCenter(column, center, center);
     background-color: rgb(220, 249, 249);
+
     &__container {
         @include flexCenter(column, start, center);
         background-color: rgb(255, 255, 255);
@@ -11,35 +13,40 @@
         box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
         height: 60vh;
         width: 50%;
+
         &__heading__bjit {
             margin-top: 9%;
             color: rgb(0, 0, 153);
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
-    
-        &__heading__login{
+
+        &__heading__login {
             color: $generalColor;
         }
 
-        &__form__section form{
+        &__form__section form {
             @include flexCenter(column, center, start);
             margin-top: 10px;
-            & input{
+
+            & input {
                 height: 25px;
                 width: 300px;
                 border: 2px solid $generalColor;
                 border-radius: 3px;
                 background-color: rgb(234, 250, 250);
+
             }
 
-            & label{
+            & label {
                 margin-bottom: 7px;
                 color: rgb(3, 135, 196);
             }
-            & span{
+
+            & span {
                 margin-bottom: 30px;
             }
-            & button{
+
+            & button {
                 height: 30px;
                 width: 100px;
                 color: white;
@@ -50,4 +57,14 @@
             }
         }
     }
+
+    // &__container::before {
+    //     content: "";
+    //     position: absolute;
+    //     top: 0px;
+    //     right: 0px;
+    //     bottom: 0px;
+    //     left: 0px;
+    //     background-color: rgba(152, 66, 211, 0.63);
+    // }
 }

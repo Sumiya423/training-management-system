@@ -22,11 +22,12 @@ export default function Header() {
                 {state.user.isAdmin && <Link to="/admin/trainer">Trainer</Link>}
                 {state.user.isAdmin && <Link to="/admin/trainee">Trainee</Link>}
                 {state.user.isAdmin && <Link to="/admin/courses">Courses</Link>}
+                {state.user.isAdmin && <Link to="/admin/batches">Batches</Link>}
                 {state.user.isTrainer && <Link to="/courses">My Courses</Link>}
-                <Link to="/courses">Courses</Link>
-                <Link to="/admin/batches">Batches</Link>
+                {!state.user.isTrainer && !state.user.isAdmin && <Link to="/courses">Courses</Link>}
+                {!state.user.isTrainer && !state.user.isAdmin && <Link to="/batches">Batches</Link>}
                 {state.user.isTrainer && <Link to="/quizes">Quizes</Link>}
-                <Link to='/quizes'>My Quizes</Link>
+                {!state.user.isTrainer && !state.user.isAdmin && <Link to='/quizes'>My Quizes</Link>}
                 {state.isAuthenticated && <button onClick={signout}>Logout</button>}
             </div>
         </div>

@@ -1,13 +1,8 @@
 import './styles/style.css';
 import './App.css';
 import React from "react";
-import { Routes, Route } from "react-router-dom";
 
-import Header from './share/header/header'
-import EditProfile from './component/auth/editProfile';
-import CreateTrainer from './component/auth/createTrainer';
-import CreateTrainee from './component/auth/createTrainee';
-
+import Header from './share/header/header';
 import Layout from './share/layouts/layouts';
 
 export const AuthContext = React.createContext();

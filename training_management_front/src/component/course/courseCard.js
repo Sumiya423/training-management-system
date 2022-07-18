@@ -35,10 +35,10 @@ function CourseCard({ course, onClick }) {
                 <p>Title: {course.title}</p>
                 <span>Desc: {course.description}</span>
             </div>
-            <div>
+            {authState.user.isAdmin && <div>
                 <button id={course._id} onClick={editCourse}>Edit</button>
                 <button id={course._id} onClick={deleteCourse}>Delete</button>
-            </div>
+            </div>}
         </div>
     )
 }
