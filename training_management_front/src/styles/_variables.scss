@@ -1,11 +1,12 @@
 $fontDM: "DM Sans", sans-serif;
-$fontUbuntu: "Ubuntu";
+$fontUbuntu: "Ubuntu", sans-serif;
+$fontLobs: 'Lobster', cursive;
 $fontsizeSmall: 14px;
 $fontSizeBodySmall: 16px;
 $fontSizeBodyMedium: 20px;
 $fontSizeHeaderSmall: 24px;
 $fontSizeHeaderBig: 36px;
-$generalColor: rgb(106, 204, 224);
+$generalColor: rgb(78, 141, 164);
 
 @mixin flexCenter($direction, $jusCon, $align) {
     display: flex;

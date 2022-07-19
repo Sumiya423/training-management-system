@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 .loginpage {
   height: 100vh;
   width: 100vw;
@@ -5,56 +7,75 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(220, 249, 249);
+  background-image: url("../../public/back.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 .loginpage__container {
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(217, 242, 255, 0.611);
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   height: 60vh;
   width: 50%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: normal;
+  line-height: 24px;
 }
 .loginpage__container__heading__bjit {
   margin-top: 9%;
-  color: rgb(0, 0, 153);
+  color: rgb(22, 22, 107);
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-.loginpage__container__heading__login {
-  color: rgb(106, 204, 224);
-}
-.loginpage__container__form__section form {
+.loginpage__container__form__section__form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
   margin-top: 10px;
 }
-.loginpage__container__form__section form input {
+.loginpage__container__form__section__form input {
   height: 25px;
   width: 300px;
-  border: 2px solid rgb(106, 204, 224);
+  border: 2px solid rgb(78, 141, 164);
   border-radius: 3px;
-  background-color: rgb(234, 250, 250);
+  background-color: rgba(229, 235, 241, 0.751);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-.loginpage__container__form__section form label {
+.loginpage__container__form__section__form label {
   margin-bottom: 7px;
-  color: rgb(3, 135, 196);
+  color: rgb(32, 92, 124);
+  font-family: "Lobster", cursive;
 }
-.loginpage__container__form__section form span {
+.loginpage__container__form__section__form span {
   margin-bottom: 30px;
 }
-.loginpage__container__form__section form button {
+.loginpage__container__form__section__form__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.loginpage__container__form__section__form__button button {
   height: 30px;
   width: 100px;
-  color: white;
-  background-color: rgb(106, 204, 224);
-  border: 0;
+  color: rgba(255, 255, 255, 0.856);
+  background-color: rgb(78, 141, 164);
+  border: 2px solid rgb(78, 141, 164);
   border-radius: 6px;
   font-size: 16px;
+}
+.loginpage__container__form__section__form__button button:hover {
+  background-color: rgba(213, 232, 248, 0.436);
+  border: 2px solid rgb(78, 141, 164);
+  color: rgb(78, 141, 164);
+}
+.loginpage__container__form__section__form__button a {
+  color: rgb(78, 141, 164);
 }
 
 .header__menu {
@@ -64,7 +85,7 @@
   align-items: center;
   flex-shrink: 0;
   margin: 0;
-  background-color: rgba(18, 34, 84, 0.934);
+  background-color: rgb(44, 52, 75);
   height: 80px;
   padding: 0px 100px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -73,19 +94,120 @@
   height: 60px;
 }
 .header__menu a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   font-size: 15px;
   color: rgb(213, 238, 238);
-  justify-content: center;
   text-decoration: none;
+  line-height: 10px;
+}
+.header__menu a img {
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
 }
 .header__menu a:hover, .header__menu a:focus {
-  color: rgb(139, 204, 215);
+  color: rgb(78, 141, 164);
   font-weight: bold;
 }
 .header__menu button {
   width: 100px;
   height: 35px;
-  background-color: rgb(106, 204, 224);
-  border: 0;
+  background-color: rgb(78, 141, 164);
+  border: 2px solid rgb(78, 141, 164);
+  color: rgba(255, 255, 255, 0.933);
   border-radius: 3px;
+}
+.header__menu button:hover {
+  background-color: rgb(44, 52, 75);
+  border: 2px solid rgb(78, 141, 164);
+  color: rgb(78, 141, 164);
+  font-weight: bold;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(78, 141, 164);
+}
+.profile__header {
+  font-family: "Lobster", cursive;
+  font-weight: 100;
+}
+.profile hr {
+  width: 100%;
+}
+.profile__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(209, 235, 242);
+  margin-top: 50px;
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.profile__container__img {
+  border-radius: 50%;
+  height: 150px;
+}
+.profile__container__name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: rgb(9, 83, 144);
+}
+.profile__container__name p {
+  color: rgb(78, 141, 164);
+  font-weight: 400;
+  margin-left: 10px;
+  width: 300px;
+}
+.profile a {
+  width: 100px;
+  height: 28px;
+  background-color: rgb(78, 141, 164);
+  border: 1px solid rgb(78, 141, 164);
+  color: rgba(255, 255, 255, 0.933);
+  border-radius: 3px;
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+}
+.profile a:hover {
+  background-color: rgb(234, 249, 250);
+  border: 1px solid rgb(78, 141, 164);
+  color: rgb(78, 141, 164);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.layout {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+.layout__container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.layout__container__body {
+  background-color: rgb(237, 250, 252);
+  padding: 0px;
+  flex-grow: 1;
+  overflow: auto;
+  min-height: 2em;
 }/*# sourceMappingURL=style.css.map */

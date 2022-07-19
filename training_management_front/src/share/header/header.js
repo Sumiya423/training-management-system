@@ -18,7 +18,6 @@ export default function Header() {
         <div className="header">
             <div className="header__menu">
                 <img className="header__menu__logo" src="logo.png" />
-                <Link to="/profile">Profile</Link>
                 {state.user.isAdmin && <Link to="/admin/trainer">Trainer</Link>}
                 {state.user.isAdmin && <Link to="/admin/trainee">Trainee</Link>}
                 {state.user.isAdmin && <Link to="/admin/courses">Courses</Link>}
@@ -28,7 +27,9 @@ export default function Header() {
                 {!state.user.isTrainer && !state.user.isAdmin && <Link to="/batches">Batches</Link>}
                 {state.user.isTrainer && <Link to="/quizes">Quizes</Link>}
                 {!state.user.isTrainer && !state.user.isAdmin && <Link to='/quizes'>My Quizes</Link>}
+                <Link style={{color: 'aqua'}} to="/profile"><img src={'http://localhost:4000/'+state.user.imageUrl}/>{state.user.name}</Link>
                 {state.isAuthenticated && <button onClick={signout}>Logout</button>}
+                
             </div>
         </div>
     )

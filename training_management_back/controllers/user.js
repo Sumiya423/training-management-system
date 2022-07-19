@@ -109,6 +109,7 @@ class userController {
 
             user.password = await bcrypt.hash(password, 10);
             user.changePasswordToken = undefined;
+            user.changePasswordExpire = undefined;
             user.isVerified = true
             await user.save();
 
@@ -167,6 +168,7 @@ class userController {
                 updatedUser.email = req.body.email ? req.body.email : updatedUser.email;
                 updatedUser.isAdmin = req.body.isAdmin ? req.body.isAdmin : updatedUser.isAdmin;
                 updatedUser.isTrainer = req.body.isTrainer ? req.body.isTrainer : updatedUser.isTrainer;
+                updatedUser.about = req.body.about ? req.body.about : updatedUser.about;
                 let courseBody = req.body.courses;
                 if (courseBody){
                     courseBody =  Array.isArray(courseBody)?courseBody: courseBody.split(",");

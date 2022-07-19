@@ -14,6 +14,7 @@ import BatchList from "../../component/batch/batchList";
 import BatchDetails from "../../component/batch/batchDetails";
 import Login from '../../component/auth/login';
 import SetNewPassword from '../../component/auth/setNewPassword'
+import ForgetPassword from "../../component/auth/forgetPassword";
 import { AuthContext } from '../../App';
 
 function Layout() {
@@ -21,7 +22,7 @@ function Layout() {
     return (
         <div className="layout">
             <div className="layout__container">
-                <div className="layout__container-body">
+                <div className="layout__container__body">
                     <Routes>
                         <Route path="/*" element={<WrongUrl />} />
                         {authState.isAuthenticated && <Route exact path="/" element={<Profile />} />}
@@ -36,6 +37,8 @@ function Layout() {
                         <Route exact path="/admin/trainee" element={<Trainee />} />
                         <Route exact path="/admin/trainer" element={<Trainer />} />
                         <Route exact path="/change-password/:token/:user_id" element={<SetNewPassword />} />
+                        <Route exact path="/reset-password/:token/:user_id" element={<SetNewPassword />} />
+                        <Route exact path="/forget-password" element={<ForgetPassword />} />
                         <Route exact path="/admin/courses/:courseId" element={<CourseDetails />} />
                         <Route exact path="/admin/batches" element={<BatchList />} />
                         <Route exact path="/admin/batches/:batchId" element={<BatchDetails />} />

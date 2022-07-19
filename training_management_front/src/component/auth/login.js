@@ -1,6 +1,6 @@
 import React from "react";
 import { AuthContext } from "../../App";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export const Login = () => {
@@ -17,13 +17,6 @@ export const Login = () => {
   };
 
   const [data, setData] = React.useState(dataState);
-
-  const handleInputChange = event => {
-    setData({
-      ...data,
-      [event.target.name]: event.target.value
-    });
-  };
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -53,11 +46,11 @@ export const Login = () => {
           type: "LOGIN",
           payload: resJson.results
         })
-        if(resJson.results.user.isAdmin){
-          navigate('/admin/courses')
+        if (resJson.results.user.isAdmin) {
+          navigate('/admin/profile')
         }
-        navigate('/courses')
-        
+        navigate('/profile')
+
       })
       .catch(error => {
         setData({
@@ -74,7 +67,7 @@ export const Login = () => {
         <h2 className="loginpage__container__heading__bjit"> BJIT Training Center</h2>
 
         <div className="loginpage__container__form__section">
-          <form onSubmit={handleSubmit}>
+          <form className="loginpage__container__form__section__form" onSubmit={handleSubmit}>
             <label>Email</label>
             <input
               type="text"
@@ -131,11 +124,17 @@ export const Login = () => {
             />
             <span style={{ color: "red" }} id="errorpass"></span>
 
-            {data.errorMessage && <span>{data.errorMessage}</span>}
-            <button disabled={data.isSubmitting}>
-              {data.isSubmitting ? "Loading....." : "Login"}
-            </button>
+            {data.errorMessage && <span style={{ color: "red" }}>{data.errorMessage + ". Enter correct info to login!"}</span>}
+            <div className="loginpage__container__form__section__form__button">
+              <button disabled={data.isSubmitting}>
+                {data.isSubmitting ? "Loading....." : "Login"}
+              </button>
+
+              <Link to='/forget-password'>Forget Password?</Link>
+            </div>
           </form>
+
+
         </div>
 
       </div>

@@ -5,24 +5,27 @@
         @include flexCenter(row, space-evenly, center);
         flex-shrink: 0;
         margin: 0;
-        background-color: rgba(18, 34, 84, 0.934);
+        background-color: rgb(44, 52, 75);
         height: 80px;
         padding: 0px 100px;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        &:first-child{
-            
-        }
         &__logo{
             height: 60px;
         }
         & a {
+            @include flexCenter(row, center, center);
             font-size: 15px;
             color: rgb(213, 238, 238);
-            justify-content: center;
             text-decoration: none;
+            line-height: 10px;
+            & img{
+                height: 20px;
+                border-radius: 50%;
+                margin-right: 5px;
+            }
         }
         & a:hover, a:focus{
-            color: rgb(139, 204, 215);;
+            color: $generalColor;
             font-weight: bold;
         }
 
@@ -30,8 +33,15 @@
             width: 100px;
             height: 35px;
             background-color: $generalColor;
-            border: 0;
+            border: 2px solid $generalColor;
+            color: rgba(255, 255, 255, 0.933);
             border-radius: 3px;
+        }
+        & button:hover{
+            background-color: rgb(44, 52, 75);
+            border: 2px solid $generalColor;
+            color: $generalColor;
+            font-weight: bold;
         }
     }
 }

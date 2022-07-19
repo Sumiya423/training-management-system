@@ -79,6 +79,7 @@ export const EditProfile = () => {
     let formData = new FormData();
     formData.append("name", user.name);
     formData.append("email", user.email);
+    formData.append("about", user.about);
     selectedFile?formData.append("imageUrl", selectedFile):formData.append("imageUrl", user.imageUrl);
     formData.append("isTrainer", user.isTrainer);
     formData.append("courses", course_ids)
@@ -129,6 +130,14 @@ export const EditProfile = () => {
             name="email"
             placeholder="email"
             defaultValue={user.email}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <textarea
+            name="about"
+            placeholder="about"
+            defaultValue={user.about}
             onChange={handleInputChange}
           />
         </div>
