@@ -10,7 +10,7 @@ function BatchCard({ batch, onClick }) {
     const editBatch = (e) => {
         const clicked_div = e.currentTarget;
         const selected_course_id = clicked_div.id
-        navigate(`/edit-batch/${selected_course_id}`)
+        navigate(`/admin/batches/${selected_course_id}/edit`)
     }
     const deleteBatch = (e) => {
         const clicked_div = e.currentTarget;

@@ -4,13 +4,11 @@ import { useParams } from "react-router-dom";
 import { AuthContext } from '../../App';
 import UserCard from '../user/userCard';
 import { useNavigate } from "react-router-dom";
-
+import BatchCourse from './batchCourse';
 
 function BatchDetails() {
 
     const [batch, setBatch] = useState([])
-    const [courses, setCourses] = useState([])
-    const [trainees, setTrainees] = useState([])
     const { batchId } = useParams();
 
     const {state: authState} = React.useContext(AuthContext)
@@ -32,8 +30,6 @@ function BatchDetails() {
                 const json = await response.json();
                 console.log(json);
                 setBatch(json.results);
-                setCourses(json.results.courses);
-                setTrainees(json.results.trainees);
             } catch (error) {
                 console.log("error", error);
             }
@@ -41,31 +37,21 @@ function BatchDetails() {
         fetchData()
     }, [])
 
-    const handleCourseClick = (event, course_id) => {
-        console.log(course_id);
-        navigate(`/admin/courses/${course_id}`);
-    }
-
     const handleTraineesClick = (event, batch_id) => {
-
     }
-    const courseList = courses;
-    const traineesList = trainees?.map(trainees => <UserCard key={trainees._id} component={trainees} onClick={handleTraineesClick} />)
+    const traineesList = batch.trainees?.map(trainee => <UserCard key={trainee._id} component={trainee} onClick={handleTraineesClick} />)
+    const courseList = batch.courses?.map(course => <BatchCourse key={course._id} course={course}/>)
     return (
         <div>
             <h3>Title: {batch.title}</h3>
             <p>Desc: {batch.description}</p>
             Trainees:
-            <ol>
-                {traineesList}
-            </ol>
+            {traineesList}
             Courses:
-            <ol>
-                { }
-            </ol>
-            <p>Start-date: {batch.startDate}</p>
+            {courseList}
+            <p>Start-date: {new Date(batch.startDate).toLocaleDateString()}</p>
 
-            <p>End-date: {batch.endDate}</p>
+            <p>End-date: {new Date(batch.endDate).toLocaleDateString()}</p>
         </div>
     )
 }
