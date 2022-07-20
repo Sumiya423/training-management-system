@@ -14,7 +14,7 @@ function CreateCourse() {
 
     const { state: authState } = React.useContext(AuthContext)
     const [data, setData] = React.useState(initialData);
-    const [trainees] = [
+    const topics = [
         'OOP',
         'ReactJS',
         'Express',
@@ -30,6 +30,8 @@ function CreateCourse() {
         'Element',
         'EventListener'
     ]
+    let topicOptions = []
+    topics.map(topic => topicOptions.push({ 'label': topic, 'value': topic }))
 
 
     const handleInputChange = event => {
@@ -50,12 +52,12 @@ function CreateCourse() {
             title: data.title,
             description: data.description,
             startDate: data.startDate,
-            endDate: data.endDate,
-            trainees: data.trainees.map(trainee => trainee._id),
-            courses: data.courses.map(course => course._id)
+            endDate:data.endDate,
+            topics: data.topics.map(topic => topic.value)
         }
 
-        const url = `http://localhost:4000/admin/create-batch`
+        const url = `http://127.0.0.1:4000/admin/create-course`
+
         fetch(url, {
             method: 'POST',
             headers: {
@@ -70,7 +72,7 @@ function CreateCourse() {
             })
             .then(resJson => {
                 console.log(resJson)
-                navigate('/admin/batches')
+                navigate('/admin/courses')
             })
             .catch(error => {
                 setData({
@@ -130,16 +132,14 @@ function CreateCourse() {
                             <p>Select Topics</p>
                             <Select
                                 width='200px'
-                                name="trainees"
+                                name="topics"
                                 closeMenuOnSelect={false}
                                 isMulti
-                                options={trainees}
+                                options={topicOptions}
                                 onChange={(selected) => setData({
                                     ...data,
-                                    ['trainees']: selected
+                                    ['topics']: selected
                                 })}
-                                getOptionLabel={(option) => option.name}
-                                getOptionValue={(option) => option._id}
                             />
                         </div>
 

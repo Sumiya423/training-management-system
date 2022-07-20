@@ -7,6 +7,7 @@ import { AuthContext } from '../../App';
 function BatchList() {
 
     const [batches, setBatches] = useState([])
+    const [filterdbatches, setFilteredBatches] = useState([])
     const { state: authState } = React.useContext(AuthContext)
 
     let navigate = useNavigate();
@@ -27,6 +28,7 @@ function BatchList() {
                 const json = await response.json();
                 console.log(json);
                 setBatches(json.results);
+                setFilteredBatches(json.results);
             } catch (error) {
                 console.log("error", error);
             }
@@ -34,20 +36,35 @@ function BatchList() {
         fetchData()
     }, [])
 
+
+    const getBatchStatus = (batch) => {
+        const today = new Date()
+        const start = new Date(batch.startDate)
+        const end = new Date(batch.endDate)
+        if (today > start && today < end){
+            return "Ongoing"
+        } else if (today < start) {
+            return "Upcomming"
+        } else {
+            return "Finished"
+        }
+    }
+
+
     const handleClick = (event, batch_id) => {
         console.log(batch_id);
         navigate(`/admin/batches/${batch_id}`);
     }
 
-    const batchList = batches?.map(batch => <BatchCard key={batch._id} batch={batch} onClick={handleClick} />)
+    const batchList = filterdbatches?.map(batch => <BatchCard key={batch._id} batch={batch} batchStatus={getBatchStatus(batch)} onClick={handleClick} />)
 
     return (
         <div className='list'>
             <h2 className='list__header'>Batches</h2>
             <div className='list__on_up'>
-                <Link to=''>Old</Link>
-                <Link to=''>Ongoing</Link>
-                <Link to=''>Upcoming</Link>
+                <button onClick={(e) => setFilteredBatches(batches.filter(batch => getBatchStatus(batch) === "Finished"))}>Finished</button>
+                <button onClick={(e) => setFilteredBatches(batches.filter(batch => getBatchStatus(batch) === "Ongoing"))}>Ongoing</button>
+                <button onClick={(e) => setFilteredBatches(batches.filter(batch => getBatchStatus(batch) === "Upcomming"))}>Upcoming</button>
             </div>
             <hr className='list__hr'></hr>
             {authState.user.isAdmin && <Link to='/admin/batches/create' className='list__create-batch'>Create Batch</Link>}

@@ -8,7 +8,7 @@ function CourseCard({ course, onClick }) {
     const editCourse = (e) => {
         const clicked_div = e.currentTarget;
         const selected_course_id = clicked_div.id
-        navigate(`/edit-course/${selected_course_id}`)
+        navigate(`/admin/courses/${selected_course_id}/edit`)
     }
     const deleteCourse = (e) => {
         const clicked_div = e.currentTarget;
