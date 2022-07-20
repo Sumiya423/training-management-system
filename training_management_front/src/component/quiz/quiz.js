@@ -39,7 +39,8 @@ function Quizes() {
 
 
     return (
-        <div style={{width: '80%', height: '400px', margin: '100px', backgroundColor: 'lightgray'}}>
+        <div style={{width: '80%', height: '400px', margin: '100px', backgroundColor: 'white', textAlign: 'center'}}>
+            <h3 style={{color: 'darkgray'}}>Quiz Score</h3>
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart
                     width={200}
