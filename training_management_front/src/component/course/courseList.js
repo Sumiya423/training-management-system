@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import CourseCard from './courseCard';
 import { AuthContext } from '../../App';
 
@@ -44,8 +44,13 @@ function CourseList() {
     console.log(authState)
 
     return (
-        <div>
-            {courseList}
+        <div className='list'>
+            <h2 className='list__header'>Courses</h2>
+            <hr className='list__hr'></hr>
+            {authState.user.isAdmin && <Link to='/admin/courses/create' className='list__create-batch'>Create Course</Link>}
+            <div className='list__batch'>
+                {courseList}
+            </div>
         </div>
     )
 }

@@ -18,6 +18,7 @@ import ForgetPassword from "../../component/auth/forgetPassword";
 import { AuthContext } from '../../App';
 import CreateBatch from "../../component/batch/createBatch";
 import EditBatch from "../../component/batch/editBatch";
+import CreateCourse from "../../component/course/createCourse";
 
 function Layout() {
     const { state: authState } = React.useContext(AuthContext)
@@ -43,7 +44,9 @@ function Layout() {
                         <Route exact path="/forget-password" element={<ForgetPassword />} />
                         <Route exact path="/admin/courses/:courseId" element={<CourseDetails />} />
                         <Route exact path="/admin/batches" element={<BatchList />} />
+                        <Route exact path="/batches" element={<BatchList />} />
                         <Route exact path="/admin/batches/create" element={<CreateBatch />} />
+                        <Route exact path="/admin/courses/create" element={<CreateCourse />} />
                         <Route exact path="/admin/batches/:batchId" element={<BatchDetails />} />
                         <Route exact path="/admin/batches/:batchId/edit" element={<EditBatch />} />
                     </Routes>

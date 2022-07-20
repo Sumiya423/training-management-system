@@ -108,75 +108,88 @@ function CreateBatch() {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
-        <h1>Create Batch</h1>
-        <div>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            defaultValue={data.title}
-            onChange={handleInputChange}
-          />
-        </div>
+      <div>
+        <form className="list" onSubmit={handleSubmit}>
+          <h1 className="list__header">Create Batch</h1>
+          <hr className="list__hr"></hr>
+          <div className="list__form">
+            <div className="list__form__input">
+              <p>Title</p>
+              <input
+                type="text"
+                name="title"
+                placeholder="Title"
+                defaultValue={data.title}
+                onChange={handleInputChange}
+              />
+            </div>
 
-        <div>
-          <input
-            type="text"
-            name="description"
-            placeholder="Descriptions"
-            defaultValue={data.description}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <input
-            type="date"
-            name="startDate"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <input
-            type="date"
-            name="endDate"
-            // defaultValue={new Date().toISOString().substring(0, 10)}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <Select
-            name="trainees"
-            closeMenuOnSelect={false}
-            isMulti
-            options={trainees}
-            onChange={(selected) => setData({
-              ...data,
-              ['trainees']: selected
-            })}
-            getOptionLabel={(option) => option.name}
-            getOptionValue={(option) => option._id}
-          />
-        </div>
-        <div>
-          <Select
-            name="courses"
-            closeMenuOnSelect={false}
-            isMulti
-            options={courses}
-            onChange={(selected) => setData({
-              ...data,
-              ['courses']: selected
-            })}
-            getOptionLabel={(option) => option.title}
-            getOptionValue={(option) => option._id}
-          />
-        </div>
-        {data.errorMessage && <span>{data.errorMessage}</span>}
-        <button disabled={data.isSubmitting}>
-          {data.isSubmitting ? "Creating....." : "Create"}
-        </button>
-      </form>
+            <div className="list__form__input">
+              <p>Description</p>
+              <textarea
+                type="text"
+                name="description"
+                placeholder="Descriptions"
+                defaultValue={data.description}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="list__form__input">
+              <p>Start-Date</p>
+              <input
+                type="date"
+                name="startDate"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="list__form__input">
+              <p>End-Date</p>
+              <input
+                type="date"
+                name="endDate"
+                // defaultValue={new Date().toISOString().substring(0, 10)}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="list__form__input">
+              <p>Select Trainees</p>
+              <Select
+                width='200px'
+                name="trainees"
+                closeMenuOnSelect={false}
+                isMulti
+                options={trainees}
+                onChange={(selected) => setData({
+                  ...data,
+                  ['trainees']: selected
+                })}
+                getOptionLabel={(option) => option.name}
+                getOptionValue={(option) => option._id}
+              />
+            </div>
+            <div className="list__form__input">
+              <p>Select Courses</p>
+              <Select
+                name="courses"
+                closeMenuOnSelect={false}
+                isMulti
+                options={courses}
+                onChange={(selected) => setData({
+                  ...data,
+                  ['courses']: selected
+                })}
+                getOptionLabel={(option) => option.title}
+                getOptionValue={(option) => option._id}
+              />
+            </div>
+            {data.errorMessage && <span>{data.errorMessage}</span>}
+            <button disabled={data.isSubmitting}>
+              {data.isSubmitting ? "Creating....." : "Create"}
+            </button>
+          </div>
+
+        </form>
+      </div>
     </div>
   );
 }

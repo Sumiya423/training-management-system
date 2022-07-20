@@ -21,7 +21,7 @@ class authController {
             }
             const email = req.body.email;
             const user = await User.findOne({ email: email });
-            console.log(user)
+            console.log('user_log',user)
             if (!user) {
                 return res.status(HTTP_STATUS.UNAUTHORIZED).send(failure('Unauthorized user login.'));
             }
@@ -66,7 +66,7 @@ class authController {
             }
             const email = req.body.email;
             const user = await User.findOne({ email: email });
-            console.log(user);
+            console.log('user',user);
             if (!user) {
                 return res
                     .status(HTTP_STATUS.NOT_FOUND)

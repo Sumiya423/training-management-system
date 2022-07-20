@@ -1,0 +1,52 @@
+@import './variables';
+
+.list {
+
+    &__form {
+        @include flexCenter(column, start, center);
+        padding: 50px;
+        width: 500px;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+        font-family: $fontDM;
+
+        &__input {
+            padding-bottom: 10px;
+            width: 200px;
+
+            & input,
+            textarea {
+                height: 25px;
+                width: 200px;
+                border: 1px solid $generalColor;
+                border-radius: 4px;
+                margin-bottom: 12px;
+            }
+
+            & textarea {
+                height: 100px;
+            }
+
+            & p {
+                margin: 0 0 7px 0;
+                color: rgb(67, 67, 139);
+            }
+
+        }
+
+        & button {
+            background-color: rgb(66, 125, 168);
+            border: 0;
+            color: whitesmoke;
+            padding: 8px;
+            border-radius: 3px;
+            text-decoration: none;
+            width: 90px;
+            margin: 5px;
+
+            &:hover{
+                background-color: $generalColor;
+            }
+        }
+
+    }
+}

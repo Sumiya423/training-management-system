@@ -108,7 +108,8 @@
   border-radius: 50%;
   margin-right: 5px;
 }
-.header__menu a:hover, .header__menu a:focus {
+.header__menu a:hover,
+.header__menu a:focus {
   color: rgb(78, 141, 164);
   font-weight: bold;
 }
@@ -125,6 +126,12 @@
   border: 2px solid rgb(78, 141, 164);
   color: rgb(78, 141, 164);
   font-weight: bold;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .profile {
@@ -193,9 +200,8 @@ body {
 }
 
 .layout {
-  height: 100vh;
-  width: 100vw;
   display: flex;
+  background-color: rgb(237, 250, 252);
 }
 .layout__container {
   width: 100%;
@@ -203,11 +209,149 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  padding-top: 80px;
 }
 .layout__container__body {
-  background-color: rgb(237, 250, 252);
   padding: 0px;
   flex-grow: 1;
   overflow: auto;
   min-height: 2em;
+}
+
+.list {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.list__create-batch {
+  background-color: rgb(63, 95, 141);
+  border: 0;
+  color: whitesmoke;
+  padding: 8px;
+  border-radius: 3px;
+  text-decoration: none;
+}
+.list__on_up {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(213, 234, 247);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  padding: 10px;
+}
+.list__on_up a {
+  text-decoration: none;
+  font-family: "DM Sans", sans-serif;
+  padding: 10px;
+}
+.list__on_up a:hover,
+.list__on_up a:focus {
+  background-color: white;
+  color: rgb(40, 153, 190);
+  box-shadow: rgb(199, 212, 222) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+.list__create-batch:hover {
+  background-color: rgb(78, 141, 164);
+}
+.list__header {
+  color: rgb(78, 141, 164);
+  font-family: "Lobster", cursive;
+}
+.list__hr {
+  width: 100%;
+  background-color: rgb(60, 152, 209);
+}
+.list__batch {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 30px;
+  padding: 40px 20px;
+  padding: 10px;
+}
+.list__batch__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(237, 249, 252);
+  padding: 40px;
+  width: 350px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.list__batch__container__body {
+  height: auto;
+  margin: 5px 0;
+}
+.list__batch__container__title {
+  color: rgb(21, 82, 129);
+}
+.list__batch__container__des {
+  text-align: justify;
+}
+.list__batch__container__des span {
+  font-weight: bold;
+  color: rgb(21, 82, 129);
+}
+.list__batch__container__btn {
+  border: 0;
+  color: whitesmoke;
+  padding: 8px;
+  border-radius: 3px;
+  text-decoration: none;
+  width: 90px;
+  margin: 5px;
+}
+.list__batch__container .edit {
+  background-color: rgb(82, 163, 185);
+}
+.list__batch__container .delete {
+  background-color: rgb(247, 75, 95);
+}
+
+.list__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 50px;
+  width: 500px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  font-family: "DM Sans", sans-serif;
+}
+.list__form__input {
+  padding-bottom: 10px;
+  width: 200px;
+}
+.list__form__input input,
+.list__form__input textarea {
+  height: 25px;
+  width: 200px;
+  border: 1px solid rgb(78, 141, 164);
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+.list__form__input textarea {
+  height: 100px;
+}
+.list__form__input p {
+  margin: 0 0 7px 0;
+  color: rgb(67, 67, 139);
+}
+.list__form button {
+  background-color: rgb(66, 125, 168);
+  border: 0;
+  color: whitesmoke;
+  padding: 8px;
+  border-radius: 3px;
+  text-decoration: none;
+  width: 90px;
+  margin: 5px;
+}
+.list__form button:hover {
+  background-color: rgb(78, 141, 164);
 }/*# sourceMappingURL=style.css.map */

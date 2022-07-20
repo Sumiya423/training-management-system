@@ -30,14 +30,16 @@ function CourseCard({ course, onClick }) {
             });
     }
     return (
-        <div className='course__list__card'>
-            <div style={{ backgroundColor: 'lightBlue', display: 'flex', flexDirection: 'column', margin: '50px' }} onClick={event => onClick(event, course._id)}>
-                <p>Title: {course.title}</p>
-                <span>Desc: {course.description}</span>
+        <div className='list__batch__container'>
+            <div className='list__batch__container__body' onClick={event => onClick(event, course._id)}>
+                <h2 className='list__batch__container__title'> {course.title}</h2>
+                <p className='list__batch__container__des'>{(course.description).slice(0, 200)}<span style={{ fontWeight: 'bold' }}>...</span></p>
+                <p className='list__batch__container__des'><span>Start-Date:</span> {JSON.stringify(new Date(course.startDate)).slice(1, 11)}</p>
+                <p className='list__batch__container__des'><span>End-Date:</span> {JSON.stringify(new Date(course.endDate)).slice(1, 11)}</p>
             </div>
             {authState.user.isAdmin && <div>
-                <button id={course._id} onClick={editCourse}>Edit</button>
-                <button id={course._id} onClick={deleteCourse}>Delete</button>
+                <button className='list__batch__container__btn edit' id={course._id} onClick={editCourse}>Edit</button>
+                <button className='list__batch__container__btn delete' id={course._id} onClick={deleteCourse}>Delete</button>
             </div>}
         </div>
     )

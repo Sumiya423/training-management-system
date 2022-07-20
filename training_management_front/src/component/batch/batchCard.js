@@ -33,17 +33,18 @@ function BatchCard({ batch, onClick }) {
             });
     }
     return (
-        <div>
-            <div style={{ backgroundColor: 'lightBlue', display: 'flex', flexDirection: 'column', margin: '50px' }} onClick={event => onClick(event, batch._id)}>
-                <p>Title: {batch.title}</p>
-                <span>Desc: {batch.description}</span>
+        <div className='list__batch__container'>
+            <div className='list__batch__container__body' onClick={event => onClick(event, batch._id)}>
+                <h2 className='list__batch__container__title'> {batch.title}</h2>
+                <p className='list__batch__container__des'>{(batch.description).slice(0, 200)}<span style={{fontWeight:'bold'}}>...</span></p>
+                <p className='list__batch__container__des'><span>Start-Date:</span> {JSON.stringify(new Date(batch.startDate)).slice(1,11)}</p>
+                <p className='list__batch__container__des'><span>End-Date:</span> {JSON.stringify(new Date(batch.endDate)).slice(1,11)}</p>
             </div>
-            <div>
-                <button id={batch._id} onClick={editBatch}>Edit</button>
-                <button id={batch._id} onClick={deleteBatch}>Delete</button>
-            </div>
+            {authState.user.isAdmin && <div>
+                <button className='list__batch__container__btn edit' id={batch._id} onClick={editBatch}>Edit</button>
+                <button className='list__batch__container__btn delete' id={batch._id} onClick={deleteBatch}>Delete</button>
+            </div>}
         </div>
-
     )
 }
 
