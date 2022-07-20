@@ -1,18 +1,17 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../App';
 
 export default function UserProfile() {
 
+  const navigate = useNavigate()
   const [user, setUser] = useState([])
   const { state: authState } = React.useContext(AuthContext);
-  const {userId} = useParams();
+  const { userId } = useParams();
 
   useEffect(() => {
-
     const url = `http://localhost:4000/admin/users/${userId}`;
-
     const fetchData = async () => {
       try {
         const response = await fetch(url,
@@ -32,6 +31,24 @@ export default function UserProfile() {
     fetchData()
   }, [userId])
 
+  const deleteUser = (e) => {
+
+    fetch(`http://localhost:4000/admin/delete-user/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        'authorization': 'Bearer ' + authState.token,
+      },
+    })
+      .then((res) => {
+        navigate('/admin/users/')
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+
+
   return (
     <div className='profile'>
       <h2 className='profile__header'>{user.name}'s Profile</h2>
@@ -48,6 +65,7 @@ export default function UserProfile() {
           <p> {user.about}</p>
         </div>}
       </div>
+      {!(user._id === authState.user._id) && <button onClick={deleteUser}>Delete User</button>}
     </div>
   )
 }

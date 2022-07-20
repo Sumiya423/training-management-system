@@ -5,7 +5,7 @@ import { AuthContext } from '../../App';
 import UserCard from './user';
 
 
-function Trainee() {
+function UserList() {
 
   const [users, setUsers] = useState([])
   const [filteredUsers, setFilteredUsers] = useState([])
@@ -41,7 +41,6 @@ function Trainee() {
   }
 
   const userList = filteredUsers?.map(user => <UserCard key={user._id} user={user} onClick={handleClick} />)
-  console.log(authState)
 
   return (
     <div className='list'>
@@ -65,4 +64,4 @@ function Trainee() {
   )
 }
 
-export default Trainee
+export default UserList

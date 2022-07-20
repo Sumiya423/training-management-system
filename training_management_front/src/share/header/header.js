@@ -7,7 +7,6 @@ export default function Header() {
 
     let navigate = useNavigate();
     const { state, dispatch } = React.useContext(AuthContext)
-    console.log('state', state);
     const signout = () => {
         dispatch({
             type: "LOGOUT",
@@ -18,8 +17,7 @@ export default function Header() {
         <div className="header sticky">
             <div className="header__menu">
                 <img className="header__menu__logo" src="logo.png" />
-                {state.user.isAdmin && <Link to="/admin/trainer">Trainer</Link>}
-                {state.user.isAdmin && <Link to="/admin/trainee">Trainee</Link>}
+                {state.user.isAdmin && <Link to="/admin/users">Users</Link>}
                 {state.user.isAdmin && <Link to="/admin/courses">Courses</Link>}
                 {state.user.isAdmin && <Link to="/admin/batches">Batches</Link>}
                 {state.user.isTrainer && <Link to="/courses">My Courses</Link>}

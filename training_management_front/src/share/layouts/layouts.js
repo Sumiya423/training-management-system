@@ -6,7 +6,6 @@ import WrongUrl from "../../component/wrongUrl/wrongUrl"
 import CourseList from "../../component/course/courseList"
 import CreateTrainer from '../../component/auth/createTrainer';
 import CreateTrainee from '../../component/auth/createTrainee';
-import Trainee from '../../component/auth/traineeList';
 import Trainer from '../../component/auth/trainerList';
 import EditProfile from "../../component/auth/editProfile";
 import CourseDetails from "../../component/course/courseDetails";
@@ -21,6 +20,7 @@ import EditBatch from "../../component/batch/editBatch";
 import CreateCourse from "../../component/course/createCourse";
 import EditCourse from "../../component/course/editCourse";
 import UserProfile from "../../component/auth/userDetails";
+import UserList from "../../component/auth/traineeList";
 
 function Layout() {
     const { state: authState } = React.useContext(AuthContext)
@@ -40,7 +40,7 @@ function Layout() {
                         <Route exact path="/admin/user/:userId" element={<UserProfile />} />
                         <Route exact path="/profile/edit" element={<EditProfile />} />
                         {!authState.isAuthenticated &&  <Route exact path="/signin" element={<Login />} />}
-                        <Route exact path="/admin/trainee" element={<Trainee />} />
+                        <Route exact path="/admin/users" element={<UserList />} />
                         <Route exact path="/admin/trainer" element={<Trainer />} />
                         <Route exact path="/change-password/:token/:user_id" element={<SetNewPassword />} />
                         <Route exact path="/reset-password/:token/:user_id" element={<SetNewPassword />} />
