@@ -18,7 +18,7 @@ function EditBatch() {
   const [data, setData] = React.useState(initialData);
   const [batch, setBatch] = React.useState({})
 
-  const {batchId} = useParams()
+  const { batchId } = useParams()
 
 
   React.useEffect(() => {
@@ -57,23 +57,23 @@ function EditBatch() {
     };
     fetchTraineeData()
     const fetchBatchData = async () => {
-        const url = `http://localhost:4000/admin/batches/${batchId}`
-        try {
-          const response = await fetch(url,
-            {
-              method: "GET",
-              headers: {
-                'authorization': 'Bearer ' + authState.token,
-              },
-            });
-          const json = await response.json();
-          setBatch(json.results);
-        } catch (error) {
-          console.log("error", error);
-        }
-      };
-      fetchBatchData()
-  
+      const url = `http://localhost:4000/admin/batches/${batchId}`
+      try {
+        const response = await fetch(url,
+          {
+            method: "GET",
+            headers: {
+              'authorization': 'Bearer ' + authState.token,
+            },
+          });
+        const json = await response.json();
+        setBatch(json.results);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    fetchBatchData()
+
   }, [])
 
   const handleInputChange = event => {
@@ -127,78 +127,90 @@ function EditBatch() {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
-        <h1>Create Batch</h1>
-        <div>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            defaultValue={batch.title}
-            onChange={handleInputChange}
-          />
-        </div>
+      <div>
+        <form className="list" onSubmit={handleSubmit}>
+          <h1 className="list__header">Edit {batch.title}</h1>
+          <hr className="list__hr"></hr>
+          <div className="list__form">
+            <div className="list__form__input">
+              <p>Title</p>
+              <input
+                type="text"
+                name="title"
+                placeholder="Title"
+                defaultValue={batch.title}
+                onChange={handleInputChange}
+              />
+            </div>
 
-        <div>
-          <input
-            type="text"
-            name="description"
-            placeholder="Descriptions"
-            defaultValue={batch.description}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          {batch.startDate && <input
-            type="date"
-            name="startDate"
-            defaultValue={JSON.stringify(new Date(batch.startDate)).slice(1,11)}
-            onChange={handleInputChange}
-          />}
-        </div>
-        <div>
-          {batch.endDate && <input
-            type="date"
-            name="endDate"
-            defaultValue={JSON.stringify(new Date(batch.endDate)).slice(1,11)}
-            onChange={handleInputChange}
-          />}
-        </div>
-        <div>
-          {batch.trainees && <Select
-            name="trainees"
-            closeMenuOnSelect={false}
-            isMulti
-            options={trainees}
-            defaultValue={batch.trainees}
-            onChange={(selected) => setBatch({
-              ...batch,
-              ['trainees']: selected
-            })}
-            getOptionLabel={(option) => option.name}
-            getOptionValue={(option) => option._id}
-          />}
-        </div>
-        <div>
-          {batch.courses && <Select
-            name="courses"
-            closeMenuOnSelect={false}
-            isMulti
-            defaultValue={batch.courses}
-            options={courses}
-            onChange={(selected) => setBatch({
-              ...batch,
-              ['courses']: selected
-            })}
-            getOptionLabel={(option) => option.title}
-            getOptionValue={(option) => option._id}
-          />}
-        </div>
-        {data.errorMessage && <span>{data.errorMessage}</span>}
-        <button disabled={data.isSubmitting}>
-          {data.isSubmitting ? "Creating....." : "Create"}
-        </button>
-      </form>
+            <div className="list__form__input">
+              <p>Description</p>
+              <textarea
+                type="text"
+                name="description"
+                placeholder="Descriptions"
+                defaultValue={batch.description}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="list__form__input">
+              <p>Satrt-Date</p>
+              {batch.startDate && <input
+                type="date"
+                name="startDate"
+                defaultValue={JSON.stringify(new Date(batch.startDate)).slice(1, 11)}
+                onChange={handleInputChange}
+              />}
+            </div>
+            <div className="list__form__input">
+              <p>End-Date</p>
+              {batch.endDate && <input
+                type="date"
+                name="endDate"
+                defaultValue={JSON.stringify(new Date(batch.endDate)).slice(1, 11)}
+                onChange={handleInputChange}
+              />}
+            </div>
+            <div className="list__form__input">
+              <p>Trainees</p>
+              {batch.trainees && <Select
+                name="trainees"
+                closeMenuOnSelect={false}
+                isMulti
+                options={trainees}
+                defaultValue={batch.trainees}
+                onChange={(selected) => setBatch({
+                  ...batch,
+                  ['trainees']: selected
+                })}
+                getOptionLabel={(option) => option.name}
+                getOptionValue={(option) => option._id}
+              />}
+            </div>
+            <div className="list__form__input">
+              <p>Courses</p>
+              {batch.courses && <Select
+                name="courses"
+                closeMenuOnSelect={false}
+                isMulti
+                defaultValue={batch.courses}
+                options={courses}
+                onChange={(selected) => setBatch({
+                  ...batch,
+                  ['courses']: selected
+                })}
+                getOptionLabel={(option) => option.title}
+                getOptionValue={(option) => option._id}
+              />}
+            </div>
+            {data.errorMessage && <span>{data.errorMessage}</span>}
+            <button disabled={data.isSubmitting}>
+              {data.isSubmitting ? "Updating....." : "Update"}
+            </button>
+          </div>
+
+        </form>
+      </div>
     </div>
   );
 }

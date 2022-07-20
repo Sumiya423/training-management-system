@@ -17,21 +17,25 @@
     &__on_up {
         width: 70%;
         @include flexCenter(row, space-evenly, center);
-        background-color: rgb(213, 234, 247);
+        background-color: rgb(228, 250, 253);
         box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
         padding: 10px;
 
-        & a {
+        & button {
             text-decoration: none;
             font-family: $fontDM;
             padding: 10px;
+            background-color: rgb(127, 180, 198);
+            color: white;
+            border: 0;
         }
 
-        & a:hover,
-        a:focus {
+        & button:hover,
+        button:focus {
             background-color: white;
             color: rgb(40, 153, 190);
-            box-shadow: rgb(199, 212, 222) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;        }
+            box-shadow: rgb(199, 212, 222) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+        }
     }
 
     &__create-batch:hover {
@@ -58,19 +62,24 @@
         &__container {
             @include flexCenter(column, center, center);
             background-color: rgb(237, 249, 252);
-            padding: 40px;
+            padding: 10px;
             width: 350px;
             border-radius: 10px;
             box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+            border: 1px solid $generalColor;
 
             &__body {
                 
+                border-radius: 5px;
+                padding: 30px;
                 height: auto;
                 margin: 5px 0;
             }
-            &__title{
+
+            &__title {
                 color: rgb(21, 82, 129);
             }
+
             &__des {
                 text-align: justify;
 

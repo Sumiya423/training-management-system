@@ -173,7 +173,7 @@ function EditCourse() {
 
             {data.errorMessage && <span>{data.errorMessage}</span>}
             <button disabled={data.isSubmitting}>
-              {data.isSubmitting ? "Creating....." : "Create"}
+              {data.isSubmitting ? "Updating....." : "Update"}
             </button>
           </div>
 

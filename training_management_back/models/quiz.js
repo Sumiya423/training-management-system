@@ -1,3 +1,4 @@
+const { Int32 } = require('mongodb');
 const mongoose = require('mongoose')
 
 const quizSchema = new mongoose.Schema({
@@ -10,7 +11,7 @@ const quizSchema = new mongoose.Schema({
         required: true
     },
     score: {
-        type: mongoose.Types.Decimal128,
+        type: mongoose.Schema.Types.Number,
         required: true
     },
     trainee: {

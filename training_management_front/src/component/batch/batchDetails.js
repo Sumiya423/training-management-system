@@ -11,7 +11,7 @@ function BatchDetails() {
     const [batch, setBatch] = useState([])
     const { batchId } = useParams();
 
-    const {state: authState} = React.useContext(AuthContext)
+    const { state: authState } = React.useContext(AuthContext)
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -38,20 +38,35 @@ function BatchDetails() {
     }, [])
 
     const handleTraineesClick = (event, batch_id) => {
+
     }
     const traineesList = batch.trainees?.map(trainee => <UserCard key={trainee._id} component={trainee} onClick={handleTraineesClick} />)
-    const courseList = batch.courses?.map(course => <BatchCourse key={course._id} course={course}/>)
+    const courseList = batch.courses?.map(course => <BatchCourse key={course._id} course={course} />)
     return (
-        <div>
-            <h3>Title: {batch.title}</h3>
-            <p>Desc: {batch.description}</p>
-            Trainees:
-            {traineesList}
-            Courses:
-            {courseList}
-            <p>Start-date: {new Date(batch.startDate).toLocaleDateString()}</p>
+        <div className='batch'>
+            <div className='batch__desTrainee'>
+                <h2 className='batch__title'>{batch.title}</h2>
+                <p className='batch__des'>{batch.description}</p>
+                <div className='batch__trainee'>
+                    <h3>Trainees are</h3>
+                    <div className='batch__trainee__container'>
 
-            <p>End-date: {new Date(batch.endDate).toLocaleDateString()}</p>
+                        {traineesList}
+                    </div>
+
+                </div>
+            </div>
+            <div className="batch__course">
+                <h3>Courses are</h3>
+
+                <div className='batch__course__container'>
+                    {courseList}
+                </div>
+
+                <h3>Batch Status</h3>
+                <p><span>Start-date:</span> {new Date(batch.startDate).toLocaleDateString()}</p>
+                <p><span>End-date:</span> {new Date(batch.endDate).toLocaleDateString()}</p>
+            </div>
         </div>
     )
 }

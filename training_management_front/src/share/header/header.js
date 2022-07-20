@@ -23,8 +23,7 @@ export default function Header() {
                 {state.user.isTrainer && <Link to="/courses">My Courses</Link>}
                 {!state.user.isTrainer && !state.user.isAdmin && <Link to="/courses">Courses</Link>}
                 {!state.user.isTrainer && !state.user.isAdmin && <Link to="/batches">Batches</Link>}
-                {state.user.isTrainer && <Link to="/quizes">Quizes</Link>}
-                {!state.user.isTrainer && !state.user.isAdmin && <Link to='/quizes'>My Quizes</Link>}
+                <Link to="/quizes">Quizes</Link>
                 <Link style={{color: 'aqua'}} to="/profile"><img src='user.jpg'/>{state.user.name}</Link>
                 {state.isAuthenticated && <button onClick={signout}>Logout</button>}
                 

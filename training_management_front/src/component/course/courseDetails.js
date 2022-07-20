@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import { AuthContext } from '../../App';
 
@@ -9,9 +9,9 @@ function CourseDetails() {
     const { courseId } = useParams();
 
     const [course, setCourse] = useState([])
-    const {state: authState} = React.useContext(AuthContext)
+    const { state: authState } = React.useContext(AuthContext)
 
-    useEffect( () => {
+    useEffect(() => {
 
         const url = `http://localhost:4000/admin/courses/${courseId}`;
 
@@ -40,17 +40,18 @@ function CourseDetails() {
     console.log(authState)
 
     return (
-        <div>
-            <h3>Title: {course.title}</h3>
-            <p>Desc: {course.description}</p>
-            Topics:
-            <ol>
-                
-                { topicList }
-                
-            </ol>
-            <p>Start-date: {course.startDate}</p>
-            <p>Start-date: {course.endDate}</p>
+        <div className='batch'>
+            <div className='batch__desTrainee'>
+                <h3>{course.title}</h3>
+                <p>{course.description}</p>
+                <h3>Topics are</h3>
+                <ol >
+                    {topicList}
+                </ol>
+                <p>Start-date: {course.startDate}</p>
+                <p>End-date: {course.endDate}</p>
+            </div>
+
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route} from "react-router-dom";
-
 import Profile from "../../component/profile/profile";
 import WrongUrl from "../../component/wrongUrl/wrongUrl"
 import CourseList from "../../component/course/courseList"
@@ -21,6 +20,7 @@ import CreateCourse from "../../component/course/createCourse";
 import EditCourse from "../../component/course/editCourse";
 import UserProfile from "../../component/auth/userDetails";
 import UserList from "../../component/auth/traineeList";
+import Quizes from "../../component/quiz/quiz";
 
 function Layout() {
     const { state: authState } = React.useContext(AuthContext)
@@ -53,6 +53,8 @@ function Layout() {
                         <Route exact path="/admin/courses/create" element={<CreateCourse />} />
                         <Route exact path="/admin/batches/:batchId" element={<BatchDetails />} />
                         <Route exact path="/admin/batches/:batchId/edit" element={<EditBatch />} />
+                        <Route exact path="/admin/courses/:courseId/edit" element={<EditBatch />} />
+                        <Route exact path="/quizes" element={<Quizes />} />
                     </Routes>
                 </div>
             </div>

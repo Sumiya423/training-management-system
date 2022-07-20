@@ -3,7 +3,8 @@
 .profile{
     @include flexCenter(column, center, center);
     color: $generalColor;
-    
+    height: 100vh;
+    padding: 50px;
     &__header{
         font-family: $fontLobs;
         font-weight: 100;

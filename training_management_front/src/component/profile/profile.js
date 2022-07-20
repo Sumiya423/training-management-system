@@ -10,7 +10,7 @@ export default function Profile() {
     const { state: authState } = React.useContext(AuthContext);
     const userId = authState.user._id;
 
-    
+
     useEffect(() => {
 
         const url = `http://localhost:4000/admin/users/${userId}`;
@@ -34,8 +34,9 @@ export default function Profile() {
         fetchData()
     }, [userId])
 
+    const courseList = user.courses?.map(course => <li>{course.title}</li>)
 
-    console.log(authState)
+    console.log(courseList)
 
 
     const handleClick = (e) => {
@@ -57,9 +58,15 @@ export default function Profile() {
                 {user.about && <div className='profile__container__name'>About:
                     <p> {user.about}</p>
                 </div>}
+                {user.isTrainer && <div className='profile__container__name'>Courses
+                    <p>{courseList}</p>
+                </div>}
+
+
+
 
             </div>
-            <Link to= '/profile/edit'>Edit</Link>
+            <Link to='/profile/edit'>Edit</Link>
         </div>
     )
 }
