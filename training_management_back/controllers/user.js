@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Batch = require('../models/batch')
 const bcrypt = require('bcrypt');
 const HTTP_STATUS = require('../utils/httpStatus');
 const { success, failure } = require('../utils/commonResponse');
@@ -135,9 +136,18 @@ class userController {
     async getUser(req, res, next) {
         try {
             const userId = req.params.userId;
-            const user = await User.findById(userId).populate('courses').exec();;
+            const user = await User.findById(userId).populate('courses').exec();
+            const responseData = {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                imageUrl: user.imageUrl,
+                isTrainer: user.isTrainer,
+                courses: user.courses,
+                about: user.about,
+            }
             if (user) {
-                return res.status(HTTP_STATUS.OK).send(success('User Found', user));
+                return res.status(HTTP_STATUS.OK).send(success('User Found', responseData));
             }
 
             return res.status(HTTP_STATUS.OK).send(success('User not Found'));

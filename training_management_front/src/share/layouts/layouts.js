@@ -20,6 +20,7 @@ import CreateBatch from "../../component/batch/createBatch";
 import EditBatch from "../../component/batch/editBatch";
 import CreateCourse from "../../component/course/createCourse";
 import EditCourse from "../../component/course/editCourse";
+import UserProfile from "../../component/auth/userDetails";
 
 function Layout() {
     const { state: authState } = React.useContext(AuthContext)
@@ -36,6 +37,7 @@ function Layout() {
                         <Route exact path="/courses" element={<CourseList />} />
                         <Route exact path="/admin/trainer/create" element={<CreateTrainer />} />
                         <Route exact path="/admin/trainee/create" element={<CreateTrainee />} />
+                        <Route exact path="/admin/user/:userId" element={<UserProfile />} />
                         <Route exact path="/profile/edit" element={<EditProfile />} />
                         {!authState.isAuthenticated &&  <Route exact path="/signin" element={<Login />} />}
                         <Route exact path="/admin/trainee" element={<Trainee />} />

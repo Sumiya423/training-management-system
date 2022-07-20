@@ -65,6 +65,7 @@ function BatchList() {
                 <button onClick={(e) => setFilteredBatches(batches.filter(batch => getBatchStatus(batch) === "Finished"))}>Finished</button>
                 <button onClick={(e) => setFilteredBatches(batches.filter(batch => getBatchStatus(batch) === "Ongoing"))}>Ongoing</button>
                 <button onClick={(e) => setFilteredBatches(batches.filter(batch => getBatchStatus(batch) === "Upcomming"))}>Upcoming</button>
+                <button onClick={(e) => setFilteredBatches(batches)}>All Batches</button>
             </div>
             <hr className='list__hr'></hr>
             {authState.user.isAdmin && <Link to='/admin/batches/create' className='list__create-batch'>Create Batch</Link>}
