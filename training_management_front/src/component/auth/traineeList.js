@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 export const Trainee = () => {
     let navigate = useNavigate();
-    function createTrainee(){
-        navigate('/admin/trainee/create')
-    }
+    const [users, setUsers] = useState([])
+    const [filteredUsers, setFilteredUsers] = useState([])
+    const { state: authState } = React.useContext(AuthContext)
+  
   return (
     <div className="userspage">
       <div className="userspage__container">
